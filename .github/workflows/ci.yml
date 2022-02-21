@@ -71,8 +71,8 @@ jobs:
           #env:
         #NODE_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
-      - name: Npm build
-        run: npm run encore production
+      ##- name: Npm build
+      ## run: npm run encore production
 
       # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
       - name: Validate composer.json and composer.lock
