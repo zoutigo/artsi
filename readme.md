@@ -23,3 +23,10 @@ symphony check:requirements
 docker-compose up -d
 symphony serve -d
 ```
+
+### Lancer les tests
+
+```
+php bin/phpunit ---testdox
+
+```

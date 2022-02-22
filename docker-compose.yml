@@ -2,8 +2,8 @@ version: '3'
 
 services:
 ###> doctrine/doctrine-bundle ###
-  database-artsi:
-    image: mysql:latest
+  database:
+    image: 'mysql:8.0'
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: main
