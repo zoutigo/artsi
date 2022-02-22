@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['7.4.3']
     steps:
       # —— Check Elasticsearch 🔎 ——————————————————————————————————————————————
       - name: Check the Elasticsearch connection from runner host
@@ -73,9 +73,6 @@ jobs:
 
 
       # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
-      - name: Composer install
-        run: composer install
-
       - name: Validate composer.json and composer.lock
         run: composer validate
 
