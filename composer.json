@@ -1,6 +1,8 @@
 {
     "type": "project",
     "license": "proprietary",
+    "name":"artsi/website",
+    "description":"site internet anne rousselot",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
