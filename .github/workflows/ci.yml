@@ -73,8 +73,11 @@ jobs:
 
 
       # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
-      #- name: Validate composer.json and composer.lock
-      #  run: composer validate
+      - name: Composer install
+        run: composer install
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
       - name: Get composer cache directory
         id: composer-cache
