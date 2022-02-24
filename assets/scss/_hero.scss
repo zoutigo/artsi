@@ -1,0 +1,133 @@
+/*======================================
+    Hero Area CSS
+========================================*/
+.hero-area {
+    position: relative;
+    padding: 220px 0 250px 0;
+    background-image: url('https://via.placeholder.com/1920x1100');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media #{$md} {
+        padding: 150px 0 180px 0;
+    }
+
+    @media #{$xs} {
+        padding: 120px 0 70px 0;
+    }
+
+    &.overlay::before {
+        background: $theme-color;
+        opacity: 0.9;
+    }
+
+    .hero-content {
+        border-radius: 0;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        text-align: center;
+        padding: 0px 100px;
+
+        h5 {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $white;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 50px;
+            color: $white;
+            text-shadow: 0px 3px 8px #00000017;
+            text-transform: capitalize;
+
+            span {
+                display: block;
+            }
+        }
+
+        p {
+            margin-top: 30px;
+            font-size: 15px;
+            color: $white;
+        }
+
+        .button {
+            margin-top: 40px;
+
+            .btn {
+                background-color: $white;
+                color: $theme-color;
+                margin-right: 12px;
+
+                &:hover {
+                    background-color: $black;
+                    color: $white;
+                }
+
+                &.btn-alt {
+                    background-color: #ffffff6b;
+                    color: #fff;
+
+                    &:hover {
+                        background-color: $white !important;
+                        color: $theme-color !important;
+                    }
+                }
+            }
+        }
+
+        @media #{$lg} {
+            h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media #{$md} {
+
+            text-align: center;
+
+            h1 {
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 38px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        @media #{$xs} {
+            padding: 0 10px;
+
+            h1 {
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            p {
+                margin-top: 15px;
+                font-size: 14px;
+                line-height: 22px;
+            }
+
+            .button {
+                .btn {
+                    width: 60%;
+                    margin: 0;
+                    margin-bottom: 7px;
+
+                    &:last-child {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

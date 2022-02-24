@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+	<x-search></x-search>
+
+	<!-- Start Hero Area -->
+	{% include 'home/_hero.html.twig' %}
+	<!-- End Hero Area -->
+
+	<!-- Start Small Features Area -->
+	{% include 'home/_small-features.html.twig' %}
+	<!-- End Small Features Area -->
+
+	<!-- Start Features Area -->
+	{% include 'home/_features.html.twig' %}
+	<!-- End Features Area -->
+
+	<!-- Start Test Area -->
+{% include 'home/_test.html.twig' %}
+	<!-- End Test Area -->
+{% endblock %}
