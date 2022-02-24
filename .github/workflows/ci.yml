@@ -97,10 +97,8 @@ jobs:
 
       ## —— Static analysis ✨ —————————————————————————————————————————————————
       - name: Static analysis of PHP code (PHPStan)
-        run: |
-          bin/console about --env=prod
-          make static-analysis
-
+      - uses: php-actions/phpstan@v3
+  
       ## —— JWT 💫 —————————————————————————————————————————————————————————————
       - name: Generate the SSL keys
         run: bin/console lexik:jwt:generate-keypair
