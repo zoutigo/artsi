@@ -1,0 +1,83 @@
+/*======================================
+    Small Features CSS
+========================================*/
+.small-features {
+    .inner-content {
+        display: inline-block;
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        margin-top: -50%;
+        z-index: 5;
+
+        @media #{$md} {
+            margin-top: -80px;
+        }
+
+        @media #{$xs} {
+            margin-top: 0;
+        }
+    }
+
+    .single-feature {
+        position: relative;
+        padding: 50px 40px;
+        display: inline-block;
+        background-color: $white;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding-left: 100px;
+        width: 100%;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.048);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+
+
+        &:hover {
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.048);
+            transform: translateY(-5px);
+        }
+
+        i {
+            color: $theme-color;
+            font-size: 35px;
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: $black;
+
+            span {
+                font-size: 14px;
+                color: #888;
+                display: block;
+                margin-top: 8px;
+                font-weight: 400;
+            }
+        }
+
+        @media #{$md} {
+            padding: 40px 30px;
+            text-align: center;
+
+            i {
+                position: relative;
+                left: 0;
+                top: 0;
+                display: inline-block;
+                margin-bottom: 15px;
+                transform: none;
+            }
+
+            h2 {
+                font-size: 15px;
+            }
+        }
+
+        @media #{$xs} {}
+    }
+}
