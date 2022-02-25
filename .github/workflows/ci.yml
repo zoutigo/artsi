@@ -1,9 +1,8 @@
 # https://help.github.com/en/actions
 name: Full CI process for Symfony 5
-on:
-  push:
-    branches:
-      - main
+
+on: [push]
+
 env:
   ES_HTTP_PORT: 9209
   
@@ -96,23 +95,24 @@ jobs:
         if: matrix.php-versions == '8.0'
 
       ## —— Static analysis ✨ —————————————————————————————————————————————————
-      - name: Static analysis of PHP code (PHPStan)
-        run: |
-          bin/console about --env=prod
-          make static-analysis
-
+      # - name: Static analysis of PHP code (PHPStan)
+      # - uses: php-actions/composer@v6
+      # - uses: php-actions/phpstan@v3
+      #   with: 
+      #     path: src/
+  
       ## —— JWT 💫 —————————————————————————————————————————————————————————————
-      - name: Generate the SSL keys
-        run: bin/console lexik:jwt:generate-keypair
+      # - name: Generate the SSL keys
+      #   run: bin/console lexik:jwt:generate-keypair
 
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
       # We use the dev env here
-      - name: Load Doctrine fixtures and populate the Elasticsearch indexes
-        run: |
-          make load-fixtures
-          make populate
+      # - name: Load Doctrine fixtures and populate the Elasticsearch indexes
+      #   run: |
+      #     make load-fixtures
+      #     make populate
 
       - name: Run functionnal and unit tests
         run: |
-          cp phpunit.xml.ci phpunit.xml
-          ./vendor/bin/phpunit --testsuite='main'
+          php bin/phpunit
+          
