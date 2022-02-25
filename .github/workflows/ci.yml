@@ -1,5 +1,6 @@
 # https://help.github.com/en/actions
 name: Full CI process for Symfony 5
+
 on: [push]
 
 env:
