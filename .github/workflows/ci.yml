@@ -95,11 +95,11 @@ jobs:
         if: matrix.php-versions == '8.0'
 
       ## —— Static analysis ✨ —————————————————————————————————————————————————
-      - name: Static analysis of PHP code (PHPStan)
-      - uses: php-actions/composer@v6
-      - uses: php-actions/phpstan@v3
-        with: 
-          path: src/
+      # - name: Static analysis of PHP code (PHPStan)
+      # - uses: php-actions/composer@v6
+      # - uses: php-actions/phpstan@v3
+      #   with: 
+      #     path: src/
   
       ## —— JWT 💫 —————————————————————————————————————————————————————————————
       - name: Generate the SSL keys
