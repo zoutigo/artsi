@@ -19,13 +19,13 @@ class CommentUnitTest extends TestCase
 
         $comment->setContent('content');
         $comment->setCreatedAt($datetime);
-        $comment->setAuthor($user);
+        $comment->setEmail('test@test.com');
         $comment->setArticle($article);
 
         $this->assertTrue($comment->getContent() === 'content');
         $this->assertTrue($comment->getCreatedAt() === $datetime);
         $this->assertTrue($comment->getArticle() === $article);
-        $this->assertTrue($comment->getAuthor() === $user);
+        $this->assertTrue($comment->getEmail() === 'test@test.com');
     }
 
     public function testIsFalse(): void
@@ -37,13 +37,13 @@ class CommentUnitTest extends TestCase
 
         $comment->setContent('contents');
         $comment->setCreatedAt($datetime);
-        $comment->setAuthor($user);
+        $comment->setEmail('test@test.com');
         $comment->setArticle($article);
 
         $this->assertFalse($comment->getContent() === 'content');
         $this->assertFalse($comment->getCreatedAt() === new DateTime());
         $this->assertFalse($comment->getArticle() === new Article());
-        $this->assertFalse($comment->getAuthor() === new User());
+        $this->assertFalse($comment->getEmail() === 'test@teste.com');
     }
     public function testIsEmpty(): void
     {
@@ -53,6 +53,6 @@ class CommentUnitTest extends TestCase
         $this->assertEmpty($comment->getContent());
         $this->assertEmpty($comment->getCreatedAt());
         $this->assertEmpty($comment->getArticle());
-        $this->assertEmpty($comment->getAuthor());
+        $this->assertEmpty($comment->getEmail());
     }
 }

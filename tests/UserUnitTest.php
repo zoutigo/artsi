@@ -22,7 +22,7 @@ class UserUnitTest extends TestCase
         $user->setDescription('description');
         $user->setInstagram('instagram');
         $user->addArticle($article);
-        $user->addComment($comment);
+     
 
         $this->assertTrue($user->getEmail() === 'true@test.com');
         $this->assertTrue($user->getFirstname() === 'prenom');
@@ -31,7 +31,7 @@ class UserUnitTest extends TestCase
         $this->assertTrue($user->getDescription() === 'description');
         $this->assertTrue($user->getInstagram() === 'instagram');
         $this->assertContains($article, $user->getArticles());
-        $this->assertContains($comment, $user->getComments());
+     
     }
 
     public function testIsFalse(): void
@@ -46,8 +46,8 @@ class UserUnitTest extends TestCase
             ->setPassword('passworder')
             ->setDescription('descriptioner')
             ->setInstagram('instagramer')
-            ->addArticle($article)
-            ->addComment($comment);
+            ->addArticle($article);
+        
 
         $this->assertFalse($user->getEmail() === 'true@test.com');
         $this->assertFalse($user->getFirstname() === 'prenom');
@@ -56,7 +56,6 @@ class UserUnitTest extends TestCase
         $this->assertFalse($user->getDescription() === 'description');
         $this->assertFalse($user->getInstagram() === 'instagram');
         $this->assertNotContains(new Article(), $user->getArticles());
-        $this->assertNotContains(new Comment(), $user->getComments());
     }
 
     public function testIsEmpty()
@@ -70,6 +69,5 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getDescription());
         $this->assertEmpty($user->getInstagram());
         $this->assertEmpty($user->getArticles());
-        $this->assertEmpty($user->getComments());
     }
 }
