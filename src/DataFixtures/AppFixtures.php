@@ -57,7 +57,8 @@ class AppFixtures extends Fixture
                         ->setAuthor($user)
                         ->setIsPublished(false)
                         ->setUpdatedAt($faker->dateTimeBetween('-1 month','now'))
-                        ->setCreatedAt($faker->dateTimeBetween('-6 month','now'));
+                        ->setCreatedAt($faker->dateTimeBetween('-6 month','now'))
+                        ->addCategory($category);
 
                 $manager->persist($article);
             }

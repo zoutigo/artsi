@@ -20,18 +20,25 @@ symphony check:requirements
 
 ### Lancer l'environnement de developpement
 
-```
+```bash
 composer install
 npm install
 npm run build
 docker-compose up -d
-symphony serve -d
+symfony serve -d
 npm run builddev
+```
+
+### Ajouter des données de test
+
+```bash
+symfony console doctrine:fixtures:load
+
 ```
 
 ### Lancer les tests
 
-```
-php bin/phpunit ---testdox
+```bash
+php bin/phpunit --testdox
 
 ```
