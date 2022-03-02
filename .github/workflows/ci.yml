@@ -109,7 +109,7 @@ jobs:
       # We use the dev env here
       - name: Load Doctrine fixtures and populate the Elasticsearch indexes
         run: |
-          symfony console  doctrine:fixtures:load --no-interaction
+          bin/console  doctrine:fixtures:load --no-interaction
       #     make populate
 
       - name: Run functionnal and unit tests
