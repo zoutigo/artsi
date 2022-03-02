@@ -1,0 +1,57 @@
+<!-- Start Blog Section Area -->
+<section class="blog-section section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h3 class="wow zoomIn" data-wow-delay=".2s">Blogs</h3>
+					<h2 class="wow fadeInUp" data-wow-delay=".4s">Our Latest News</h2>
+					<p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+																																																																																																																																										                            Ipsum available, but the majority have suffered alteration in some form.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			{% for article in articles %}
+				<div
+					class="col-lg-4 col-md-6 col-12">
+					<!-- Start Single Blog -->
+					<div class="single-blog wow fadeInUp" data-wow-delay=".2s">
+						<div class="blog-img">
+							<a href="blog-single-sidebar.html">
+								<img src="https://via.placeholder.com/370x215" alt="#">
+							</a>
+						</div>
+						<div class="blog-content">
+							<a class="category" href="javascript:void(0)">
+								{% for category in article.categories %}
+									<span>{{category.name}}
+									</span>
+								{% endfor %}
+							</a>
+							<h4>
+								<a href="blog-single-sidebar.html">{{article.title}}</a>
+							</h4>
+							<p>{{article.content|u.truncate(200, '...', false)}}</p>
+							<div class="autor">
+								<a href="javascript:void(0)"><img src="https://via.placeholder.com/100x100" alt="#"></a>
+								<a href="javascript:void(0)" class="name">Roel Aufderhar</a>
+								<ul class="meta-content">
+									<li>
+										<a href="javascript:void(0)">{{article.createdAt|date("m/d/Y")}}</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">5 min de lecture</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- End Single Blog -->
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+</section>
+<!-- End Blog Section Area -->
