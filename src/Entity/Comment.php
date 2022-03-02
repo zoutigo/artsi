@@ -27,17 +27,18 @@ class Comment
      */
     private $createdAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
+   
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
     public function getId(): ?int
     {
@@ -68,17 +69,7 @@ class Comment
         return $this;
     }
 
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
 
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 
     public function getArticle(): ?Article
     {
@@ -88,6 +79,18 @@ class Comment
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

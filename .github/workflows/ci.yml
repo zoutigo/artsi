@@ -108,8 +108,8 @@ jobs:
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
       # We use the dev env here
       # - name: Load Doctrine fixtures and populate the Elasticsearch indexes
-      #   run: |
-      #     make load-fixtures
+        # run: |
+          # bin/console  doctrine:fixtures:load --no-interaction
       #     make populate
 
       - name: Run functionnal and unit tests
