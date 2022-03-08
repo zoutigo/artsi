@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Bienvenue sur le site!
 			{% endblock %}
 		</title>
 
@@ -22,8 +22,23 @@
 	<body>
 		<!-- Start Header Area -->
 		<x-search></x-search>
+		{% set current_Page = app.request.get('_route') %}
 
+		<!-- Preloader -->
+		{# <div class="preloader">
+			<div class="preloader-inner">
+				<div class="preloader-icon">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div> #}
+		<!-- /End Preloader -->
 		{% include "base/header.html.twig" %}
+		{% if controller_name is not same as('HomeController') %}
+			{% include "base/breadcrumbs.html.twig" %}
+
+		{%endif %}
 		{% block body %}{% endblock %}
 		{% include "base/footer.html.twig" %}
 
