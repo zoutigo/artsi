@@ -32,6 +32,7 @@ class BlogController extends AbstractController
         return $this->render('blog/index.html.twig', [
             'articles' => $articles,
             'numberPages'=>count($data)/6,
+            'controller_name' => 'BlogController',
             
         ]);
     }

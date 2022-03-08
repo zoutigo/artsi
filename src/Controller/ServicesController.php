@@ -18,6 +18,8 @@ class ServicesController extends AbstractController
     {
         return $this->render('services/index.html.twig', [
             'controller_name' => 'ServicesController',
+            'parentPage'=>'home',
+            'ancestorPage'=>'ancestor',
         ]);
     }
 
