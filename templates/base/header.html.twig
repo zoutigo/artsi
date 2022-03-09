@@ -68,23 +68,15 @@
 								</li>
 
 								<li class="nav-item">
-									<a class="dd-menu collapsed" href="{{path('faq_index')}}" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">FAQ</a>
+								{# <a href="{{path('faq')}}" aria-label="Toggle navigation">FAQ</a> #}
+								 <a class="dd-menu collapsed" href="{{path('faq')}}" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">FAQ</a>
 									<ul class="sub-menu collapse" id="submenu-1-1">
-										<li class="nav-item">
-											<a href="about-us.html">About Us</a>
+									 {% for category in categoryNavbar() %}
+									 	<li class="nav-item">
+											<a href="{{path('faq-category',{'slug':category.slug})}}">{{category.name}}</a>
 										</li>
-										<li class="nav-item">
-											<a href="pricing.html">Our Pricing</a>
-										</li>
-										<li class="nav-item">
-											<a href="faq.html">Faq</a>
-										</li>
-										<li class="nav-item">
-											<a href="mail-success.html">Mail Success</a>
-										</li>
-										<li class="nav-item">
-											<a href="404.html">404 Error</a>
-										</li>
+									 {% endfor %}
+								
 									</ul>
 								</li>
 

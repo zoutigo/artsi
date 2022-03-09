@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Question;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -46,7 +47,8 @@ class AppFixtures extends Fixture
             $category = new Category();
             $category->setName($faker->word())
                      ->setDescription($faker->words(10,true))
-                     ->setSlug($faker->slug()) ;
+                     ->setSlug($faker->slug())
+                     ->setImage('/images/category.jpg') ;
             
             $manager->persist($category);
 
@@ -62,6 +64,15 @@ class AppFixtures extends Fixture
                         ->addCategory($category);
 
                 $manager->persist($article);
+            }
+
+            for($j=0; $j<5; $j++){
+                $question = new Question();
+                $question->setQuestion($faker->text(150))
+                ->setAnswer($faker->text(300))
+                ->setCategory($category);
+                
+                $manager->persist($question);
             }
         }
         $manager->flush();
