@@ -1,0 +1,41 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Questions!{% endblock %}
+
+{% block body %}
+
+{% set items = category.questions %}
+ 
+ <!-- Start Faq Area -->
+    <section class="faq section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="accordion" id="accordionExample">
+                    
+                      {% for item in items %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="{{loop.index}}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="title"><span class="serial">{{loop.index}}</span>{{item.question}}</span><i class="lni lni-plus"></i>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                   {{item.answer}}
+                                </div>
+                            </div>
+                        </div>
+                                      
+                        {% endfor %}
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ End Faq Area -->
+
+    {% endblock %}
