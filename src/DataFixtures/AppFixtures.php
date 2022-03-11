@@ -58,7 +58,8 @@ class AppFixtures extends Fixture
                         ->setContent($faker->text(350))
                         ->setSlug($faker->slug(3))
                         ->setAuthor($user)
-                        ->setIsPublished(false)
+                        ->setIsPublished(true)
+                        ->setReadtime(rand(3,15))
                         ->setUpdatedAt($faker->dateTimeBetween('-1 month','now'))
                         ->setCreatedAt($faker->dateTimeBetween('-6 month','now'))
                         ->addCategory($category);

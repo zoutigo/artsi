@@ -65,6 +65,11 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $readtime;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -210,6 +215,18 @@ class Article
                 $comment->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReadtime(): ?int
+    {
+        return $this->readtime;
+    }
+
+    public function setReadtime(int $readtime): self
+    {
+        $this->readtime = $readtime;
 
         return $this;
     }
