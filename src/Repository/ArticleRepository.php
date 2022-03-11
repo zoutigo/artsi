@@ -25,8 +25,21 @@ class ArticleRepository extends ServiceEntityRepository
     public function lastTree()
     {
         return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublished = 1')
             ->orderBy('a.id','DESC')
             ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findAllPublished()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublished = 1')
+            ->orderBy('a.id','DESC')
             ->getQuery()
             ->getResult();
     }

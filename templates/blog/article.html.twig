@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{article.title}}
+{% endblock %}
+
+
+{% block body %}
+
+	<!-- Start Blog Singel Area -->
+	<section class="section blog-single">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+					<div class="single-inner">
+						<div class="post-details">
+							<div class="main-content-head">
+								<div class="meta-information">
+									<h2 class="post-title">
+										<a href="blog-single.html">{{article.title}}
+											.</a>
+									</h2>
+									<!-- End Meta Info -->
+									<ul class="meta-info">
+										<li>
+											<a href="javascript:void(0)"><img src="https://via.placeholder.com/150x150" alt="#">
+												{{article.author.lastname}}
+												{{article.author.firstname}}</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="lni lni-calendar"></i>
+												{{article.createdAt |date('d m Y')}}
+											</a>
+										</li>
+										<li>
+											{% for category in article.categories %}
+
+												<a href="javascript:void(0)">
+													<i class="lni lni-tag"></i>
+													{{category.name}}</a>
+											{% endfor %}
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="lni lni-timer"></i>
+												{{article.readtime}}
+												min de lecture</a>
+										</li>
+									</ul>
+									<!-- End Meta Info -->
+								</div>
+								<div class="post-thumbnils">
+									<img src="https://via.placeholder.com/850x460" alt="#">
+								</div>
+								<div class="detail-inner">
+									{{article.content}}
+									<!--post tags -->
+									<!-- Post Social Share -->
+										<div class="post-social-media"> <h5 class="share-title">Social Share</h5>
+										<ul>
+											<li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i><span>facebook</span></a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i><span>twitter</span></a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-google"></i><span>google+</span></a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i><span>linkedin</span></a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i><span>pinterest</span></a></li>
+										</ul>
+									</div>
+									<!-- Post Social Share -->
+								</div>
+							</div>
+							<!-- Comments -->
+							{% include "blog/comments.html.twig" %}
+							{% include "blog/comments-form.html.twig" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Blog Singel Area -->
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,7 +22,7 @@ class BlogController extends AbstractController
         
         ): Response
     {
-        $data = $articleRepository->findAll();
+        $data = $articleRepository->findAllPublished();
         $articles = $paginator->paginate(
             $data,
             $request->query->getInt('page',1),
@@ -33,7 +34,22 @@ class BlogController extends AbstractController
             'articles' => $articles,
             'numberPages'=>count($data)/6,
             'controller_name' => 'BlogController',
+            'parentPage'=>'home'
             
+        ]);
+    }
+    /**
+     * @Route("/blog/{slug}", name="blog_article")
+     */
+    public function article(Article $article): Response
+    {
+      
+
+        return $this->render('blog/article.html.twig', [
+            'controller_name' => 'BlogController',
+            'article'=>$article,
+            'parentPage'=>'blog_index',
+            'ancestorPage'=>'home'
         ]);
     }
 }
