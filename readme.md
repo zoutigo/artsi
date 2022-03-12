@@ -36,9 +36,19 @@ symfony console doctrine:fixtures:load
 
 ```
 
-### Lancer les tests
+## Lancer les tests
 
 ```bash
 php bin/phpunit --testdox
 
+```
+
+## Production
+
+### Envoie des mails de contacts
+
+Les mails de prise de contact sont stockés en BDD, pour les envoyer au manager, il faut mettre en place un cron sur
+
+```bash
+symfony console app:send-contact
 ```

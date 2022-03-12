@@ -1,0 +1,90 @@
+<!-- Start Contact Form Head Area -->
+
+<div class="contact-form-head section">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 col-md-12 col-12">
+				<div class="contact-inner-title">
+					<h2>New Case?
+						<br>Send Message Us</h2>
+					<p>Just send us your questions or concerns to
+																																																																																																																																																																																																                            starting a new project.</p>
+					<div class="question">
+						<img src="https://via.placeholder.com/200x200" alt="#">
+						<h4>
+							<span>HAVE A QUESTION?</span>
+							+888 445 55 678
+						</h4>
+					</div>
+					<ul class="day-list">
+						<li>Monday - Friday:</li>
+						<li>9.00 - 6.00</li>
+						<li>Sunday & Public Holidays (Closed)
+						</li>
+					</ul>
+					<a href="javascript:void(0)" class="call-back">Request a call back
+						<i class="lni lni-arrow-right"></i>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12 col-12">
+				<div class="form-main">
+					{{form_start(form)}}
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success">
+							{{message}}
+						</div>
+					{% endfor %}
+					<div class="">
+						{{form_errors(form)}}
+					</div>
+					{# <form class="form" method="post" action="assets/mail/mail.php"> #}
+					<div class="row">
+
+						<div class="col-lg-6 col-12">
+							<div class="form-group my-2">
+								{{form_widget(form.name)}}
+								{# <input name="name" type="text" placeholder="Your Name" required="required"> #}
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-12">
+							<div class="form-group my-2">
+								{{form_widget(form.email)}}
+								{# <input name="subject" type="text" placeholder="Your Subject" required="required"> #}
+							</div>
+						</div>
+						{# 
+																																																																																				<div class="col-lg-6 col-12">
+																																																																																																	<div class="form-group">
+																																																																																																		<input name="email" type="email" placeholder="Your Email" required="required">
+																																																																																																	</div>
+																																																																																																</div>
+																																																																																																<div class="col-lg-6 col-12">
+																																																																																																	<div class="form-group">
+																																																																																																		<input name="phone" type="text" placeholder="Your Phone" required="required">
+																																																																																																	</div>
+																																																																																																</div> #}
+
+						<div class="col-12">
+							<div class="form-group message my-2">
+								{{form_widget(form.message)}}
+								{# <textarea name="message" placeholder="Your Message"></textarea> #}
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="form-group button">
+								{{form_widget(form.envoyer)}}
+								{# <button type="submit" class="btn ">Submit Message</button> #}
+							</div>
+						</div>
+					</div>
+					{{form_end(form) }}
+					{# </form> #}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Contact Form Head Area -->
