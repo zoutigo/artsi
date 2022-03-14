@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['7.4-apache']
+        php-versions: ['7.4-fpm-alpine']
 
     steps:
           # https://github.com/shivammathur/setup-php (community)
@@ -35,9 +35,7 @@ jobs:
         - name: Check PHP Version
           run: php -v
         - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
-        - run : sudo rm -rf /var/lib/apt/lists/lock
-        - run: sudo apt -yqq update
-        - run: sudo apt-get install -y msqli pdo pdo_mysql zip
+        - run: docker-php-ext-install mysqli pdo pdo_mysql zip
         
         - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
