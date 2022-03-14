@@ -44,8 +44,8 @@ jobs:
         - run : sudo rm -rf /var/lib/apt/lists/lock
         - run: sudo apt -yqq update
         - run: sudo apt-get install -y zip   
-        - run: pwd
-        - run: php bin/console doctrine:database:drop --force --env=test
+    
+        - run: php app/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
         - run: php bin/console doctrine:fixtures:load --no-interaction
