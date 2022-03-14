@@ -46,6 +46,7 @@ jobs:
         - run: sudo apt -yqq update
         - run: sudo apt-get install -y zip  
 
+
           # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
         - name: Validate composer.json and composer.lock
           run: composer validate
@@ -65,11 +66,16 @@ jobs:
           run: composer install
 
         - run: composer require symfony/runtime 
-        - run: |
+
+        - name: Run Migration && Load Fixtures
+          run: |
             php bin/console doctrine:database:drop --force --env=test
-        - run: php bin/console doctrine:database:create --env=test
-        - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
-        - run: php bin/console doctrine:fixtures:load --no-interaction
+            php bin/console doctrine:database:create --env=test
+            php bin/console doctrine:migrations:migrate --env=test --no-interaction
+            php bin/console doctrine:fixtures:load --no-interaction
+          env:
+           DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+            
         
 
          ## —— NPM 🐱 ————————————————————————————————————————————————————————————
