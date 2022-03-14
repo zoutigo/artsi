@@ -36,7 +36,7 @@ class SendContactCommand extends Command
 
   }
 
-  protected function execute(InputInterface $input, OutputInterface $output)
+  protected function execute(InputInterface $input, OutputInterface $output):int
   {
     $toSend = $this->contactRepository->findBy(['isSent'=>false]);
     $adress = new Address($this->userRepository->getManager()->getEmail(), $this->userRepository->getManager()->getLastname() . '' .$this->userRepository->getManager()->getFirstname());

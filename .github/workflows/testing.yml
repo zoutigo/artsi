@@ -1,0 +1,50 @@
+name: phpunit
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: PHPUnit
+        uses: chindit/actions-phpunit-symfony@master
+  tests :
+    name: Running functional and unit test
+    runs-on: ubuntu-20.04
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: pass_test
+          MYSQL_DATABASE: myapptest
+          MYSQL_USER: myapptest
+          MYSQL_PASSWORD: myapptest
+          DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+        ports:
+          - 3306:3306
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ['7.4-apache']
+
+    steps:
+        - run: apt-get update && apt-get install -y libzip-dev nodejs npm
+        - run: curl curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
+        - run: docker-php-ext-install mysqli pdo pdo_mysql zip
+        - run: php bin/console doctrine:database:drop --force --env=test
+        - run: php bin/console doctrine:database:create --env=test
+        - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
+        - run: php bin/console doctrine:fixtures:load --no-interaction
+        
+        - name: Install Composer dependencies
+          run: composer install
+
+        - name: install npm
+          run: npm install
+          
+        - run: npm run build
+        - run: php bin/phpunit
