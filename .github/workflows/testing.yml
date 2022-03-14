@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['7.4-apache']
+        php-versions: ['php7.4-common']
 
     steps:
           # https://github.com/shivammathur/setup-php (community)
@@ -37,7 +37,7 @@ jobs:
         - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
         - run : sudo rm -rf /var/lib/apt/lists/lock
         - run: sudo apt -yqq update
-        - run: sudo apt-get install -y php7.4-mysql php-pdo php-pdo_mysql zip        
+        - run: sudo apt-get install -y php7.4-mysql  php-pdo_mysql zip        
         - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
