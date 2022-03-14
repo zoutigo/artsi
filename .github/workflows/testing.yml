@@ -75,7 +75,7 @@ jobs:
             php bin/console doctrine:migrations:migrate --env=test --no-interaction
             php bin/console doctrine:fixtures:load --no-interaction
           env:
-           DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ tests.services.mysql.ports['3306'] }}/symfony
+           DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
             
         
 
