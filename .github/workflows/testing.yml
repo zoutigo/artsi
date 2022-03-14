@@ -28,7 +28,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ matrix.php-versions }}
-            extensions: mbstring, xml, ctype, iconv, intl,mysqli, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring,
+            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring,
           env:
             update: true
 
@@ -37,7 +37,7 @@ jobs:
         - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
         - run : sudo rm -rf /var/lib/apt/lists/lock
         - run: sudo apt -yqq update
-        - run: sudo apt-get install -y zip        
+        - run: sudo apt-get install -y mysqli zip        
         - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
