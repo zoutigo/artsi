@@ -10,13 +10,12 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: pass_test
-          MYSQL_DATABASE: myapptest
-          MYSQL_USER: myapptest
-          MYSQL_PASSWORD: myapptest
-          DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: symfony
+          MYSQL_DATABASE: symfony
         ports:
-          - 3306:3306
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: true
       matrix:
@@ -33,7 +32,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ matrix.php-versions }}
-            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring,mysqli
+            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring, mysql
           env:
             update: true
 
@@ -46,6 +45,8 @@ jobs:
         - run: sudo apt -yqq update
         - run: sudo apt-get install -y zip  
 
+        - name: Start mysql service
+          run: sudo systemctl start mysql
 
           # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
         - name: Validate composer.json and composer.lock
@@ -74,7 +75,7 @@ jobs:
             php bin/console doctrine:migrations:migrate --env=test --no-interaction
             php bin/console doctrine:fixtures:load --no-interaction
           env:
-           DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+           DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ tests.services.mysql.ports['3306'] }}/symfony
             
         
 
