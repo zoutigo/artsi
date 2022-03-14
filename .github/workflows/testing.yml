@@ -22,8 +22,13 @@ jobs:
       matrix:
         php-versions: ['7.4-apache']
 
-    steps:
-          # https://github.com/shivammathur/setup-php (community)
+    steps: 
+      # —— Setup Github actions 🐙 —————————————————————————————————————————————
+      # https://github.com/actions/checkout (official)
+        - name: Checkout
+          uses: actions/checkout@v2
+
+      # https://github.com/shivammathur/setup-php (community)
         - name: Setup PHP, extensions and composer with shivammathur/setup-php
           uses: shivammathur/setup-php@v2
           with:
@@ -35,10 +40,12 @@ jobs:
         - name: Check PHP Version
           run: php -v
         - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
+        
         - run : sudo rm -rf /var/lib/apt/lists/lock
         - run: sudo apt -yqq update
-        - run: sudo apt-get install -y zip        
-        - run: bin/console doctrine:database:drop --force --env=test
+        - run: sudo apt-get install -y zip   
+        - run: pwd
+        - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
         - run: php bin/console doctrine:fixtures:load --no-interaction
