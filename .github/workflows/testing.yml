@@ -23,19 +23,51 @@ jobs:
         php-versions: ['7.4-apache']
 
     steps:
-        - run: apt-get update && apt-get install -y libzip-dev nodejs npm
-        - run: curl curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
-        - run: docker-php-ext-install mysqli pdo pdo_mysql zip
+          # https://github.com/shivammathur/setup-php (community)
+        - name: Setup PHP, extensions and composer with shivammathur/setup-php
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php-versions }}
+            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring
+          env:
+            update: true
+
+        - name: Check PHP Version
+          run: php -v
+
         - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
         - run: php bin/console doctrine:fixtures:load --no-interaction
         
+          # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
+        - name: Validate composer.json and composer.lock
+          run: composer validate
+
+        - name: Get composer cache directory
+          id: composer-cache
+          run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+        - name: Cache composer dependencies
+          uses: actions/cache@v1
+          with:
+            path: ${{ steps.composer-cache.outputs.dir }}
+            key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+            restore-keys: ${{ runner.os }}-composer-
+
         - name: Install Composer dependencies
           run: composer install
 
-        - name: install npm
-          run: npm install
+         ## —— NPM 🐱 ————————————————————————————————————————————————————————————
+        - name: npm install
+          uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+            #registry-url: npm.fontawesome.com
+        - run: npm install
+            #env:
+          #NODE_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
+
 
         - run: npm run build
         - run: php bin/phpunit
