@@ -2,16 +2,7 @@ name: phpunit
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: PHPUnit
-        uses: chindit/actions-phpunit-symfony@master
   tests :
     name: Running functional and unit test
     runs-on: ubuntu-20.04
@@ -45,6 +36,6 @@ jobs:
 
         - name: install npm
           run: npm install
-          
+
         - run: npm run build
         - run: php bin/phpunit
