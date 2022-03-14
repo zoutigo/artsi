@@ -28,14 +28,16 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: ${{ matrix.php-versions }}
-            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring, nodejs, npm
+            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring,
           env:
             update: true
 
         - name: Check PHP Version
           run: php -v
         - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
-        - run: docker-php-ext-install mysqli pdo pdo_mysql zip
+        - run: apt -yqq update
+        - run: apt-get install -y msqli pdo pdo_mysql zip
+        
         - run: php bin/console doctrine:database:drop --force --env=test
         - run: php bin/console doctrine:database:create --env=test
         - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
