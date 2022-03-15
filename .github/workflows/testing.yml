@@ -39,15 +39,7 @@ jobs:
         - name: Check PHP Version
           run: php -v
 
-        - run: curl sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
         
-        - run : sudo rm -rf /var/lib/apt/lists/lock
-        - run: sudo apt -yqq update
-        - run: sudo apt-get install -y zip  
-
-        # - name: Start mysql service
-        #   run: sudo systemctl start mysqli
-
           # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
         - name: Validate composer.json and composer.lock
           run: composer validate
