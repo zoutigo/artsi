@@ -11,6 +11,9 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
     private $encoder ;
@@ -41,6 +44,14 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
     
+         // creation d'une categorie pour les tests
+         $category = new Category();
+         $category->setName('Category test')
+                  ->setDescription($faker->words(10,true))
+                  ->setSlug('category-test')
+                  ->setImage('/images/category.jpg') ;
+        
+         $manager->persist($category);  
 
         //Creation de 5 Categories
         for ($k=0;$k<5;$k++){
@@ -76,6 +87,31 @@ class AppFixtures extends Fixture
                 $manager->persist($question);
             }
         }
+           
+
+           // Creation d'un article pour les tests
+           $article = new Article();
+           $article->setTitle('Article test')
+                   ->setContent($faker->text(350))
+                   ->setSlug('article-test')
+                   ->setCreatedAt($faker->dateTimeBetween('-6 month','now'))
+                   ->setUpdatedAt($faker->dateTimeBetween('-1 month','now'))
+                   ->addCategory($category)
+                   ->setAuthor($user)
+                   ->setIsPublished(true)
+                   ->setReadtime(rand(3,15));
+
+            $manager->persist($article);
+
+            // Creation d'un question test
+            $question = new Question();
+            $question->setQuestion('question test')
+            ->setAnswer('reponse test')
+            ->setCategory($category);
+            
+            $manager->persist($question);
+
+                   
         $manager->flush();
     }
 }

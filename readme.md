@@ -43,6 +43,12 @@ php bin/phpunit --testdox
 
 ```
 
+## Voir la couverture de test
+
+```
+php bin/phpunit --coverage-html var/log/test/test-coverage
+```
+
 ## Production
 
 ### Envoie des mails de contacts

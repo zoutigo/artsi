@@ -54,5 +54,6 @@ class CommentUnitTest extends TestCase
         $this->assertEmpty($comment->getCreatedAt());
         $this->assertEmpty($comment->getArticle());
         $this->assertEmpty($comment->getEmail());
+        $this->assertEmpty($comment->getId());
     }
 }

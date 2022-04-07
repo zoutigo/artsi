@@ -13,7 +13,6 @@ class UserUnitTest extends TestCase
     {
         $user = new User();
         $article = new Article();
-        $comment = new Comment();
 
         $user->setEmail('true@test.com');
         $user->setFirstname('prenom');
@@ -22,6 +21,8 @@ class UserUnitTest extends TestCase
         $user->setDescription('description');
         $user->setInstagram('instagram');
         $user->addArticle($article);
+        $user->setRoles(['ROLE_TEST']);
+
      
 
         $this->assertTrue($user->getEmail() === 'true@test.com');
@@ -31,6 +32,8 @@ class UserUnitTest extends TestCase
         $this->assertTrue($user->getDescription() === 'description');
         $this->assertTrue($user->getInstagram() === 'instagram');
         $this->assertContains($article, $user->getArticles());
+        $this->assertTrue($user->getRoles()===['ROLE_TEST','ROLE_USER']);
+        $this->assertTrue($user->getUserIdentifier()==='true@test.com');
      
     }
 
@@ -69,5 +72,18 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getDescription());
         $this->assertEmpty($user->getInstagram());
         $this->assertEmpty($user->getArticles());
+        $this->assertEmpty($user->getId());
+    }
+
+    public function testAddRemoveArticle()
+    {
+       $user = new User();
+       $article = new Article();
+
+       $user->addArticle($article);
+       $this->assertContains($article,$user->getArticles());
+
+       $user->removeArticle($article);
+       $this->assertNotContains($article,$user->getArticles());
     }
 }
